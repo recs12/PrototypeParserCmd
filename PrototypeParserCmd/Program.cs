@@ -7,11 +7,11 @@ namespace QuickStart
     {
         public class Options
         {
-            [Option('v', "verbose", Required = false, HelpText = "Set output to verbose messages.")]
-            public bool Verbose { get; set; }
+            [Option('t', "teamcenter", Required = false, HelpText = "Set macro on teamcenter mode.")]
+            public bool Teamcenter { get; set; }
 
-            [Option("filename", Required = false, HelpText = "Input filename.")]
-            public string filename { get; set; }
+            [Option("name", Required = false, HelpText = "user name.")]
+            public string name { get; set; }
         }
 
         static void Main(string[] args)
@@ -19,16 +19,17 @@ namespace QuickStart
             Parser.Default.ParseArguments<Options>(args)
                    .WithParsed<Options>(o =>
                    {
-                       if (o.Verbose)
+                       if (o.Teamcenter)
                        {
-                           Console.WriteLine($"Verbose output enabled. Current Arguments: --filename {o.filename}");
-                           Console.WriteLine("Quick Start Example! App is in Verbose mode!");
-                           Console.WriteLine(o.filename);
+                           Console.WriteLine($"Tc enabled : --name {o.name}");
+                           Console.WriteLine("Quick Start Example! App is in TC mode!");
+                           Console.WriteLine($"user: {o.name}");
                            Console.ReadLine();
                        }
                        else
                        {
-                           Console.WriteLine($"Current Arguments: --filename {o.filename}");
+                           Console.WriteLine("Quick Start Example! App is in SE mode!");
+                           Console.WriteLine($"Current Arguments: --name {o.name}");
                            Console.WriteLine("Quick Start Example!");
                            Console.ReadLine();
                        }
